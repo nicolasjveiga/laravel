@@ -10,6 +10,12 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <a href="{{ route('users.create') }}">Novo</a>
+
+                    @if (session('status'))
+                        <div class="mb-4">
+                            <p class="text-green-600">{{ session('status') }}</p>
+                    @endif
+
                     <table>
                         <thead>
                             <tr>

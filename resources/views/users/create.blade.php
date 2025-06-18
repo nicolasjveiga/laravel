@@ -5,6 +5,16 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <h1>Novo Usuário</h1>
 
+                    @if ($errors->any())
+                        <div class="mb-4">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-red-600">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{ route('users.store') }}" method="POST">
                         @csrf()
                         <input type="text" name="name" placeholder="Nome">
