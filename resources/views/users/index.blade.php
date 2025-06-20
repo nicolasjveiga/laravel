@@ -15,7 +15,6 @@
                         <div class="mb-4">
                             <p class="text-green-600">{{ session('status') }}</p>
                     @endif
-
                     <table>
                         <thead>
                             <tr>
@@ -29,7 +28,9 @@
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>-</td>
+                                    <td>
+                                        <a href="{{ route('users.edit', $user->id) }}">Edit</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

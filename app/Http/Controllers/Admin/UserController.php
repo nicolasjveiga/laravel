@@ -21,12 +21,38 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    public function store(Request $request)//mudar para StoreUserRequest
+    public function store(Request $request)
     {
         User::create($request->all());
 
         return redirect()
             ->route('users.index')
             ->with('success', 'User created successfully.');
+    }
+
+    public function edit(string $id, Request $request)
+    {
+        if(! $user = User::find($id)) {
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'User not found.');
+        }
+
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(string $id, Request $request)
+    {
+        if(! $user = User::find($id)) {
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'User not found.');
+        }
+
+        $user->update($request->all());
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User updated successfully.');
     }
 }
